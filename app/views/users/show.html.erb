@@ -1,14 +1,24 @@
+<!--Displays tweets for user logged in !-->
+
 <p id="notice"><%= notice %></p>
+<br></br>
+<br></br>
+<br></br>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<br></br>
+<br></br>
+<h1> Tweets </h1>
+<h2><%= @user.email %></h2>
+ <% @tweets.each do |tweet| %>
+ <p><%= tweet.note %></p>
+ <p><%= time_ago_in_words(tweet.created_at) %> ago</p>
+ <% end %>
+
+
+
+
+
+
 <%= link_to 'Back', users_path %>

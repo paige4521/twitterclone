@@ -1,9 +1,22 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :tweets
+  get 'sessions/new'
+
+  #Nested routes; Because tweets must have a user
+  # i.e. every route will have have a user_id (/users/:user_id/tweets)
+  resources :users do
+    end
+
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+  #after a sign up, we are creating a new user, so we go to the users controller, and
+  #call the new method
+  get    '/signup',  to: 'users#new'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'tweets#index'
+  root 'users#index'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
