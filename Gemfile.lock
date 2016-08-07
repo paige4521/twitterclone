@@ -85,6 +85,9 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pkg-config (1.1.7)
+    postmark (1.8.1)
+      json
+      rake
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -161,6 +164,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  postmark
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

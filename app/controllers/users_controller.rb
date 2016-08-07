@@ -10,10 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-    @tweets = @user.tweets
-  end
 
+      @user = User.find(params[:id])
+      @tweets = @user.tweets
+
+  end
   # GET /users/new
   def new
     @user = User.new
@@ -23,16 +24,19 @@ class UsersController < ApplicationController
   def edit
   end
 
+
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:sucess] = "Welcome to the Sample App!"
-      redirect_to @user
+       #Tell the WelcomeEmail to send a welcome email when a user is created_at
+       UserMailer.welcome_email(@user).deliver_now
+       render "user_mailer/welcome_email"
     else
       render 'new'
+      #format.html {  render action: 'new'}
     end
   end
 
@@ -50,6 +54,12 @@ class UsersController < ApplicationController
     end
   end
 
+  #def send_email
+  #  @mail = set_mail_user
+  #  Ordersmailer.deliver_later
+  #  redirect_to ???, notice: "We sent an eamil lol."
+  #end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -59,6 +69,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

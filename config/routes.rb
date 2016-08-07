@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   #after a sign up, we are creating a new user, so we go to the users controller, and
   #call the new method
   get    '/signup',  to: 'users#new'
-
-
+  delete '/delete_tweet/:id',   to: 'tweets#destroy', as: "delete_tweet"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'users#index'
+  root 'tweets#index'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

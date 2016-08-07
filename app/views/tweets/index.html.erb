@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing All Tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tweets</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+    <br></br>
+  </thead>
+
+  <tbody>
+    <% @tweet.each do |tweet| %>
+      <tr>
+        <td><%= tweet.note %></td>
+        <td><%= link_to  tweet.user.email, user_path(tweet.user_id) %></td>
+        <% if current_user && current_user.id == tweet.user_id %>
+           <td><%= link_to 'delete', delete_tweet_path(tweet.id), method: :delete %></td>
+         <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

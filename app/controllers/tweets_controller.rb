@@ -8,8 +8,17 @@ class TweetsController < ApplicationController
       else
         flash[:danger] = "You are not allowed to create this post"
       end
+  end
 
+  def index
+    @tweet = Tweet.all
 
+  end
+
+  def destroy
+      @tweet = Tweet.find(params[:id])
+      @tweet.destroy
+     redirect_to root_url
   end
 
   private
