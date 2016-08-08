@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
 
   def create
+    #read up on .build and .new method differences
     @tweet = current_user.tweets.build(tweet_params)
       if @tweet.save
         flash[:success] = "Your tweet was created successfully"
